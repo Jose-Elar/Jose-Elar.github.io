@@ -35,7 +35,7 @@ window.TEXTS = {
     aboutTitle: "About me",
     aboutBody: [
       "I'm José Elguea, a programmer from La Rioja, Spain, with a degree in Video Game Design and Development from UNIR. In 2026 I did an internship at DeuSens, building features for an interactive table in Godot as part of a development team.",
-      "I focus on gameplay programming: the systems that decide how a game feels to play. My design background helps me talk the same language as designers and turn their ideas into code that is easy to extend.",
+      "I focus on gameplay programming: the systems that decide how a game feels to play. My design background helps me understand what designers and artists are aiming for, so I enjoy working closely with them: prototyping ideas quickly, iterating on feedback and writing clear code the whole team can build on. On Adopt a Fighter, as the only programmer in a team of two, turning our ideas into working systems was my job.",
       "I'm especially interested in game AI and in virtual and augmented reality, and I keep learning Unity and Godot through personal projects."
     ],
     skillsTitle: "What I work with",
@@ -99,7 +99,7 @@ window.TEXTS = {
     aboutTitle: "Sobre mí",
     aboutBody: [
       "Soy José Elguea, programador de La Rioja, graduado en Diseño y Desarrollo de Videojuegos por UNIR. En 2026 hice prácticas en DeuSens, desarrollando funcionalidades para una mesa interactiva en Godot dentro de un equipo de desarrollo.",
-      "Me centro en la programación de gameplay: los sistemas que deciden cómo se siente un juego al jugarlo. Mi formación en diseño me ayuda a hablar el mismo idioma que los diseñadores y a convertir sus ideas en código fácil de ampliar.",
+      "Me centro en la programación de gameplay: los sistemas que deciden cómo se siente un juego al jugarlo. Mi formación en diseño me ayuda a entender lo que buscan diseñadores y artistas, por eso disfruto trabajando codo con codo con ellos: prototipar ideas rápido, iterar con su feedback y escribir código claro sobre el que todo el equipo pueda construir. En Adopt a Fighter, como único programador de un equipo de dos, convertir nuestras ideas en sistemas que funcionaran era cosa mía.",
       "Me interesan especialmente la IA para videojuegos y la realidad virtual y aumentada, y sigo formándome en Unity y Godot con proyectos personales."
     ],
     skillsTitle: "Con qué trabajo",
