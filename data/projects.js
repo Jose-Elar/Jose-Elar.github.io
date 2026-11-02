@@ -4,8 +4,12 @@
   To add a project: copy one { ... } block, paste it, and change the values.
   - id:        short name used in the address (project.html?id=...). No spaces.
   - featured:  true for the one big project at the top (only one).
+  - hidden:    true to keep a project off the site without deleting it.
+  - inProgress: true to show an "In progress" label (remove it when finished).
   - filter:    "unity", "godot" or "cpp" (used by the filter buttons).
   - image:     path inside the img/ folder, or null to show a placeholder.
+  - video:     optional looping clip (.mp4, no sound) shown instead of the image.
+               Keep "image" too: it's shown while the video loads.
   - gallery:   extra images or videos for the project page (can be empty []).
                Videos: { video: "img/clip.mp4" }  ·  YouTube: { youtube: "VIDEO_ID" }
   - systems:   the "Key systems" on the project page. "code" is a link to the
@@ -21,7 +25,8 @@ window.PROJECTS = [
     language: "C#",
     team: { en: "Solo", es: "Individual" },
     role: { en: "Everything: programming, design and integration", es: "Todo: programación, diseño e integración" },
-    image: null,
+    image: "img/into-the-depths.jpg",
+    video: "img/into-the-depths.mp4",
     gallery: [],
     summary: {
       en: "2D action-puzzle vertical slice built around indirect escort: you guide an autonomous robot through the level without ever controlling it directly.",
@@ -77,7 +82,7 @@ window.PROJECTS = [
     language: "C#",
     team: { en: "2 people", es: "2 personas" },
     role: { en: "All programming", es: "Toda la programación" },
-    image: null,
+    image: "img/adopt-a-fighter.jpg",
     gallery: [],
     summary: {
       en: "Top-down turn-based tactical RPG prototype. Two teams fight, and positioning on the map decides who wins.",
@@ -121,7 +126,7 @@ window.PROJECTS = [
     language: "C#",
     team: { en: "Solo", es: "Individual" },
     role: { en: "Research and programming", es: "Investigación y programación" },
-    image: null,
+    image: "img/the-labyrinth.jpg",
     gallery: [],
     summary: {
       en: "AI experiment where NPCs use fuzzy logic to make more natural decisions, with pathfinding written without Unity's NavMesh.",
@@ -159,6 +164,7 @@ window.PROJECTS = [
 
   {
     id: "fire-talk",
+    hidden: true, // work in progress: remove this line to show it on the site
     filter: "godot",
     title: "Fire Talk",
     engine: "Godot",
@@ -180,6 +186,98 @@ window.PROJECTS = [
   },
 
   {
+    id: "steering-agents",
+    filter: "cpp",
+    title: "Steering Agents",
+    engine: "raylib",
+    language: "C++",
+    team: { en: "Solo", es: "Individual" },
+    role: { en: "All programming", es: "Toda la programación" },
+    image: "img/steering-agents.jpg",
+    video: "img/steering-agents.mp4",
+    gallery: [],
+    summary: {
+      en: "Flocking simulation in plain C++: a group of agents moves together using separation, alignment and cohesion, all written from scratch with vector maths.",
+      es: "Simulación de bandadas en C++ puro: un grupo de agentes se mueve en conjunto usando separación, alineación y cohesión, todo escrito desde cero con matemática vectorial."
+    },
+    description: {
+      en: [
+        "A study of classic AI steering behaviours, written without an engine. Each agent only sees the neighbours inside its perception radius, and from them it works out three forces: keep some distance, match their direction, and stay close to the group.",
+        "The three forces are weighted, added together and clamped to a maximum force and speed before moving the agent, so the group behaves like a flock instead of a crowd of individuals. The project is still growing, with more behaviours on the way."
+      ],
+      es: [
+        "Un estudio de los comportamientos de steering clásicos de la IA, escrito sin motor. Cada agente solo ve a los vecinos dentro de su radio de percepción y, a partir de ellos, calcula tres fuerzas: mantener la distancia, seguir su dirección y no separarse del grupo.",
+        "Las tres fuerzas se ponderan, se suman y se limitan a una fuerza y velocidad máximas antes de mover al agente, así el grupo se comporta como una bandada y no como individuos sueltos. El proyecto sigue creciendo, con más comportamientos en camino."
+      ]
+    },
+    systems: [
+      {
+        title: { en: "Separation, alignment and cohesion", es: "Separación, alineación y cohesión" },
+        text: {
+          en: "The three classic flocking rules, each calculated only from the neighbours the agent can perceive.",
+          es: "Las tres reglas clásicas de bandada, calculadas solo con los vecinos que el agente puede percibir."
+        },
+        code: "https://github.com/Jose-Elar/Agents-SteeringBehavior-C-/blob/HEAD/classes/Agent.cpp"
+      },
+      {
+        title: { en: "Force-based movement", es: "Movimiento basado en fuerzas" },
+        text: {
+          en: "Forces are weighted, combined and clamped, then applied with delta time so movement is the same at any frame rate.",
+          es: "Las fuerzas se ponderan, se combinan y se limitan, y se aplican con delta time para que el movimiento sea igual a cualquier frame rate."
+        },
+        code: "https://github.com/Jose-Elar/Agents-SteeringBehavior-C-/blob/HEAD/classes/Agent.cpp"
+      }
+    ],
+    links: { code: "https://github.com/Jose-Elar/Agents-SteeringBehavior-C-", play: "" }
+  },
+
+  {
+    id: "tactics-rpg-cpp",
+    inProgress: true,
+    filter: "cpp",
+    title: "Tactics RPG",
+    engine: "raylib",
+    language: "C++",
+    team: { en: "Solo", es: "Individual" },
+    role: { en: "All programming", es: "Toda la programación" },
+    image: null,
+    gallery: [],
+    summary: {
+      en: "Turn-based tactics game built in plain C++ with raylib. My most ambitious project without an engine, currently in development.",
+      es: "Juego de táctica por turnos hecho en C++ puro con raylib. Mi proyecto sin motor más ambicioso, actualmente en desarrollo."
+    },
+    description: {
+      en: [
+        "After building the turn system for Adopt a Fighter in Unity, I'm rebuilding the genre from the ground up in C++, where every system has to be written by hand.",
+        "So far it has a tile grid with floors and walls, conversion between screen and grid coordinates, and mouse hover over tiles. The unit system, with player and enemy teams, is the current work in progress."
+      ],
+      es: [
+        "Después de crear el sistema de turnos de Adopt a Fighter en Unity, estoy reconstruyendo el género desde cero en C++, donde cada sistema hay que escribirlo a mano.",
+        "Por ahora tiene una cuadrícula de casillas con suelos y muros, conversión entre coordenadas de pantalla y de cuadrícula, y detección del ratón sobre las casillas. El sistema de unidades, con equipos de jugador y enemigo, es lo que estoy desarrollando ahora."
+      ]
+    },
+    systems: [
+      {
+        title: { en: "Tile grid", es: "Cuadrícula de casillas" },
+        text: {
+          en: "Stores each tile's type, checks bounds and walkability, and converts between screen and grid positions.",
+          es: "Guarda el tipo de cada casilla, comprueba límites y si se puede caminar, y convierte entre posiciones de pantalla y de cuadrícula."
+        },
+        code: "https://github.com/Jose-Elar/TacticsRPG-C-/blob/HEAD/TacticsRPG/classes/Grid.cpp"
+      },
+      {
+        title: { en: "Units and teams", es: "Unidades y equipos" },
+        text: {
+          en: "Units with a name, a team and a grid position. In progress.",
+          es: "Unidades con nombre, equipo y posición en la cuadrícula. En desarrollo."
+        },
+        code: "https://github.com/Jose-Elar/TacticsRPG-C-/blob/HEAD/TacticsRPG/classes/Unit.cpp"
+      }
+    ],
+    links: { code: "https://github.com/Jose-Elar/TacticsRPG-C-", play: "" }
+  },
+
+  {
     id: "space-shooter",
     filter: "unity",
     title: "Space Shooter",
@@ -187,7 +285,7 @@ window.PROJECTS = [
     language: "C#",
     team: { en: "Solo", es: "Individual" },
     role: { en: "All programming", es: "Toda la programación" },
-    image: null,
+    image: "img/space-shooter.jpg",
     gallery: [],
     summary: {
       en: "Classic 2D shoot 'em up: survive waves of enemies with three lives and chase the highest score.",
@@ -204,12 +302,12 @@ window.PROJECTS = [
   {
     id: "snake-cpp",
     filter: "cpp",
-    title: "Snake in C++",
+    title: "Snake",
     engine: "raylib",
     language: "C++",
     team: { en: "Solo", es: "Individual" },
     role: { en: "All programming", es: "Toda la programación" },
-    image: null,
+    image: "img/snake-cpp.png",
     gallery: [],
     summary: {
       en: "Snake written in plain C++ with raylib and CMake, no engine, to practise the fundamentals of programming a game.",

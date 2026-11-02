@@ -95,6 +95,8 @@ p { margin: 0 0 1em; max-width: 68ch; }
   border: 1px solid var(--line); border-radius: 999px;
 }
 
+.tags .tag-wip { color: var(--lamp); border-color: color-mix(in srgb, var(--lamp) 55%, transparent); }
+
 /* ---------- Hero ---------- */
 .hero {
   --lx: 72%; --ly: 32%;

@@ -6,7 +6,7 @@
   "use strict";
 
   var TEXTS = window.TEXTS;
-  var PROJECTS = window.PROJECTS;
+  var PROJECTS = window.PROJECTS.filter(function (p) { return !p.hidden; });
   var LINKS = window.LINKS;
   var page = document.body.getAttribute("data-page");
   var lang = pickLanguage();
@@ -55,7 +55,15 @@
 
   function media(project, cls) {
     var box = el("div", { class: "media " + (cls || "") });
-    if (project.image) {
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (project.video) {
+      // Looping, silent clip that behaves like a GIF. The image is shown while it loads.
+      var v = el("video", { src: project.video, loop: "", playsinline: "", preload: "metadata", "aria-label": project.title });
+      if (project.image) v.poster = project.image;
+      v.muted = true;
+      if (reduceMotion) v.controls = true; else v.autoplay = true;
+      box.appendChild(v);
+    } else if (project.image) {
       box.appendChild(el("img", { src: project.image, alt: project.title, loading: "lazy" }));
     } else {
       box.classList.add("is-missing");
@@ -64,8 +72,10 @@
     return box;
   }
 
-  function tags(list) {
-    return el("ul", { class: "tags" }, list.filter(Boolean).map(function (x) { return el("li", { text: x }); }));
+  function tags(list, inProgress) {
+    var items = list.filter(Boolean).map(function (x) { return el("li", { text: x }); });
+    if (inProgress) items.unshift(el("li", { class: "tag-wip", text: t("inProgress") }));
+    return el("ul", { class: "tags" }, items);
   }
 
   function projectUrl(p) { return "project.html?id=" + encodeURIComponent(p.id); }
@@ -125,7 +135,7 @@
         el("a", { href: projectUrl(p), class: "project-thumb", "aria-hidden": "true", tabindex: "-1" }, [media(p)]),
         el("div", { class: "project-body" }, [
           el("h3", {}, [el("a", { href: projectUrl(p), text: p.title })]),
-          tags([p.engine, p.language, tr(p.team)]),
+          tags([p.engine, p.language, tr(p.team)], p.inProgress),
           el("p", { text: tr(p.summary) }),
           el("div", { class: "actions actions-small" }, [
             el("a", { href: projectUrl(p), class: "link", text: t("btnDetails") }),
@@ -137,6 +147,12 @@
       list.appendChild(item);
     });
     applyFilter();
+
+    // Hide filter buttons that would show nothing (e.g. no Godot projects yet)
+    document.querySelectorAll("button[data-filter]").forEach(function (b) {
+      var f = b.getAttribute("data-filter");
+      b.hidden = f !== "all" && !PROJECTS.some(function (p) { return !p.featured && p.filter === f; });
+    });
 
     // About
     var about = document.getElementById("about-body");
@@ -157,6 +173,13 @@
     mail.href = "mailto:" + LINKS.email;
     mail.textContent = LINKS.email;
     document.getElementById("contact-linkedin").href = LINKS.linkedin;
+    var phone = document.getElementById("contact-phone");
+    if (LINKS.phone) {
+      phone.textContent = LINKS.phone;
+      phone.href = "tel:" + LINKS.phone.replace(/\s+/g, "");
+    } else {
+      phone.parentElement.remove();
+    }
     document.getElementById("contact-github").href = LINKS.github;
   }
 
@@ -198,6 +221,7 @@
     ]);
 
     var head = el("header", { class: "project-head" }, [
+      p.inProgress ? tags([], true) : null,
       el("h1", { text: p.title }),
       el("p", { class: "lead", text: tr(p.summary) }),
       actions

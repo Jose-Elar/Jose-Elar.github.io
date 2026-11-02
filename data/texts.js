@@ -30,6 +30,7 @@ window.TEXTS = {
     btnCode: "Source code",
     btnPlay: "Play in browser",
     imagePending: "Screenshot coming soon",
+    inProgress: "In progress",
 
     aboutTitle: "About me",
     aboutBody: [
@@ -93,6 +94,7 @@ window.TEXTS = {
     btnCode: "Código fuente",
     btnPlay: "Jugar en el navegador",
     imagePending: "Captura próximamente",
+    inProgress: "En desarrollo",
 
     aboutTitle: "Sobre mí",
     aboutBody: [
@@ -132,6 +134,7 @@ window.TEXTS = {
 /* Personal links used across the site. Change them here once. */
 window.LINKS = {
   email: "j.elguea@outlook.es",
+  phone: "+34 683 19 91 86",
   linkedin: "https://www.linkedin.com/in/jos%C3%A9-elguea-87902238b/",
   github: "https://github.com/Jose-Elar",
   cv: { en: "cv/CV_EN.pdf", es: "cv/CV_ES.pdf" }
