@@ -111,6 +111,13 @@ p { margin: 0 0 1em; max-width: 68ch; }
     radial-gradient(1200px circle at 50% 120%, rgba(40, 70, 110, 0.35), transparent 60%);
   transition: background-position .2s;
 }
+.hero-art {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 58%;
+  background: url("../img/hero-bg.jpg") center / cover no-repeat;
+  /* fade the image into the dark background on its left edge */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 50%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 50%);
+}
 .hero-inner { position: relative; }
 .hero-name {
   font-size: clamp(4rem, 13vw, 9.5rem);
@@ -232,6 +239,14 @@ p { margin: 0 0 1em; max-width: 68ch; }
   .featured, .about, .project-info { grid-template-columns: 1fr; }
   .project { grid-template-columns: 200px 1fr; gap: 20px; }
   .about-photo { max-width: 260px; }
+}
+@media (max-width: 860px) {
+  /* On narrow screens the image sits behind the text, darker so it stays readable */
+  .hero-art {
+    width: 100%; opacity: 0.35;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+  }
 }
 @media (max-width: 600px) {
   .nav { display: none; }
