@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project · José Elguea</title>
+  <meta name="description" content="Project by José Elguea, gameplay programmer.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="project">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">José Elguea</a>
+      <nav class="nav" aria-label="Main">
+        <a href="./#projects" data-i18n="navProjects">Projects</a>
+        <a href="./#about" data-i18n="navAbout">About</a>
+        <a href="./#contact" data-i18n="navContact">Contact</a>
+        <a class="cv-link" href="cv/CV_EN.pdf" target="_blank" rel="noopener" data-i18n="navCv">CV</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language" data-i18n-aria="langLabel">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="wrap project-page">
+    <a class="back" href="./#projects" data-i18n="backToProjects">Back to all projects</a>
+    <article id="project"><!-- filled by js/main.js --></article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> José Elguea Arribas. <span data-i18n="footer"></span></p>
+    </div>
+  </footer>
+
+  <script src="data/texts.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

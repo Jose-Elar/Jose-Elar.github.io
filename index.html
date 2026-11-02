@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>José Elguea · Gameplay Programmer</title>
+  <meta name="description" content="Portfolio of José Elguea, gameplay programmer working in Unity and Godot with C# and C++. Gameplay systems, game AI and VR.">
+
+  <!-- Link previews (LinkedIn, WhatsApp...). Add img/og-image.jpg (1200x630) later. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="José Elguea · Gameplay Programmer">
+  <meta property="og:description" content="Gameplay systems, game AI and VR in Unity and Godot.">
+  <meta property="og:url" content="https://jose-elar.github.io/">
+  <meta property="og:image" content="https://jose-elar.github.io/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">José Elguea</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#projects" data-i18n="navProjects">Projects</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+        <a class="cv-link" href="cv/CV_EN.pdf" target="_blank" rel="noopener" data-i18n="navCv">CV</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language" data-i18n-aria="langLabel">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-light" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <h1 class="hero-name">José<br>Elguea</h1>
+        <p class="hero-role" data-i18n="heroRole">Gameplay Programmer</p>
+        <p class="hero-line" data-i18n="heroLine"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects" data-i18n="heroProjects">See my projects</a>
+          <a class="btn cv-link" href="cv/CV_EN.pdf" target="_blank" rel="noopener" data-i18n="heroCv">Download CV</a>
+          <a class="btn btn-quiet" href="https://github.com/Jose-Elar" target="_blank" rel="noopener" data-i18n="heroGithub">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured wrap" id="projects" aria-label="Featured project">
+      <!-- filled by js/main.js from data/projects.js -->
+    </section>
+
+    <section class="more wrap" aria-labelledby="more-title">
+      <div class="more-head">
+        <h2 id="more-title" data-i18n="projectsTitle">More projects</h2>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button type="button" data-filter="all" data-i18n="filterAll" aria-pressed="true">All</button>
+          <button type="button" data-filter="unity" data-i18n="filterUnity" aria-pressed="false">Unity</button>
+          <button type="button" data-filter="godot" data-i18n="filterGodot" aria-pressed="false">Godot</button>
+          <button type="button" data-filter="cpp" data-i18n="filterCpp" aria-pressed="false">C++</button>
+        </div>
+      </div>
+      <ul class="project-list" id="project-list"></ul>
+    </section>
+
+    <section class="about wrap" id="about" aria-labelledby="about-title">
+      <div class="about-photo">
+        <!-- Put your photo at img/photo.jpg -->
+        <img src="img/photo.jpg" alt="José Elguea" width="360" height="420" onerror="this.parentElement.classList.add('is-missing'); this.remove();">
+      </div>
+      <div class="about-text">
+        <h2 id="about-title" data-i18n="aboutTitle">About me</h2>
+        <div id="about-body"></div>
+        <h3 data-i18n="skillsTitle">What I work with</h3>
+        <dl class="skills" id="skills"></dl>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title" data-i18n="contactTitle">Let's talk</h2>
+        <p class="contact-body" data-i18n="contactBody"></p>
+        <a class="contact-email" id="contact-email" href="mailto:j.elguea@outlook.es">j.elguea@outlook.es</a>
+        <ul class="contact-links">
+          <li><a id="contact-linkedin" href="#" target="_blank" rel="noopener" data-i18n="contactLinkedin">LinkedIn</a></li>
+          <li><a id="contact-github" href="#" target="_blank" rel="noopener" data-i18n="contactGithub">GitHub</a></li>
+          <li><a class="cv-link" href="cv/CV_EN.pdf" target="_blank" rel="noopener" data-i18n="contactCv">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> José Elguea Arribas. <span data-i18n="footer"></span></p>
+    </div>
+  </footer>
+
+  <script src="data/texts.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
