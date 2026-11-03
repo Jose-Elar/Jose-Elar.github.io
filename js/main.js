@@ -17,7 +17,10 @@
   function pickLanguage() {
     // 1. ?lang=es in the address  2. visitor's last choice  3. browser language
     var fromUrl = new URLSearchParams(location.search).get("lang");
-    if (fromUrl === "en" || fromUrl === "es") return fromUrl;
+    if (fromUrl === "en" || fromUrl === "es") {
+      try { localStorage.setItem("lang", fromUrl); } catch (e) { /* ignore */ }
+      return fromUrl;
+    }
     try {
       var saved = localStorage.getItem("lang");
       if (saved === "en" || saved === "es") return saved;

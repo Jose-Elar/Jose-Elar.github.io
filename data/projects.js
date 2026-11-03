@@ -34,38 +34,46 @@ window.PROJECTS = [
     },
     description: {
       en: [
-        "My final degree project at UNIR, developed on my own in Unity. It is a side-view 2D action and puzzle game where the core challenge is protecting and guiding a robot that moves by itself.",
+        "My final degree project at UNIR, developed on my own in Unity. It is a side-view 2D action and puzzle game where the core challenge is protecting and guiding a robot that moves by itself. You fly a small drone that clears the way, and the robot only keeps its strength while you stay close to it.",
         "The slice includes two complete levels with different mechanics, and it was built with a modular architecture so new mechanics can be added without rewriting existing ones."
       ],
       es: [
-        "Mi Trabajo de Fin de Grado en UNIR, desarrollado de forma individual en Unity. Es un juego 2D de acción y puzles con perspectiva lateral en el que el reto principal es proteger y guiar a un robot que se mueve solo.",
+        "Mi Trabajo de Fin de Grado en UNIR, desarrollado de forma individual en Unity. Es un juego 2D de acción y puzles con perspectiva lateral en el que el reto principal es proteger y guiar a un robot que se mueve solo. Manejas un pequeño dron que le abre camino, y el robot solo mantiene su energía mientras te quedas cerca de él.",
         "La vertical slice incluye dos niveles completos con mecánicas diferenciadas, y se construyó con una arquitectura modular para poder añadir mecánicas nuevas sin reescribir las existentes."
       ]
     },
     systems: [
       {
-        title: { en: "Autonomous robot AI", es: "IA del robot autónomo" },
+        title: { en: "Walker robot AI", es: "IA del robot caminante" },
         text: {
-          en: "Navigation and movement logic that lets the robot advance through the level on its own and react to what the player changes around it.",
-          es: "Lógica de navegación y movimiento que permite al robot avanzar solo por el nivel y reaccionar a lo que el jugador cambia a su alrededor."
+          en: "The robot follows a route of waypoints and uses raycasts to check it has a clear path to the next one. If something blocks it, it wanders and waits instead of walking into walls. It also detects gaps ahead, stops, and jumps over the holes marked as jumpable.",
+          es: "El robot sigue una ruta de waypoints y usa raycasts para comprobar que tiene el camino libre hasta el siguiente. Si algo lo bloquea, deambula y espera en lugar de chocar con las paredes. También detecta huecos delante, se detiene y salta los agujeros marcados como saltables."
         },
-        code: ""
+        code: "https://github.com/Jose-Elar/Into-the-Depths/blob/HEAD/Assets/Scripts/WalkerDrone/MovementBehaviour.cs"
+      },
+      {
+        title: { en: "Battery link", es: "Vínculo de batería" },
+        text: {
+          en: "The heart of the indirect escort. The robot's battery recharges while the player's drone stays close and drains when it leaves. Its light and walking speed scale with the battery, and a warning dialogue fires when it runs low.",
+          es: "El núcleo de la escolta indirecta. La batería del robot se recarga mientras el dron del jugador está cerca y se agota cuando se aleja. Su luz y su velocidad dependen de la batería, y salta un diálogo de aviso cuando queda poca."
+        },
+        code: "https://github.com/Jose-Elar/Into-the-Depths/blob/HEAD/Assets/Scripts/WalkerDrone/WalkerBatteryLink.cs"
       },
       {
         title: { en: "Data-driven dialogue", es: "Diálogos basados en datos" },
         text: {
-          en: "Dialogue lives in structured data instead of code, so conversations can be written and changed without touching scripts.",
-          es: "Los diálogos se guardan en datos estructurados en lugar de en el código, así se pueden escribir y cambiar sin tocar scripts."
+          en: "All dialogue lives in a JSON file, with an id, a speaker and its lines, loaded at runtime. The manager types each line letter by letter, colours the text by speaker, and raises an event when a conversation ends so gameplay can resume.",
+          es: "Todos los diálogos están en un archivo JSON, con un id, un hablante y sus líneas, y se cargan en tiempo de ejecución. El gestor escribe cada línea letra a letra, colorea el texto según el hablante y lanza un evento al terminar para que el juego continúe."
         },
-        code: ""
+        code: "https://github.com/Jose-Elar/Into-the-Depths/blob/HEAD/Assets/Scripts/Texts/TextManager.cs"
       },
       {
         title: { en: "Interfaces and events", es: "Interfaces y eventos" },
         text: {
-          en: "Objects communicate through interfaces and events rather than direct references, which keeps systems independent and easy to extend.",
-          es: "Los objetos se comunican mediante interfaces y eventos en lugar de referencias directas, lo que mantiene los sistemas independientes y fáciles de ampliar."
+          en: "Everything the player can use (rocks, consoles, door pads) implements one IInteractable interface, so the drone needs a single interact action for all of them. Systems talk through C# events, like the bridge, the last waypoint or the end of a dialogue, instead of direct references.",
+          es: "Todo lo que el jugador puede usar (rocas, consolas, paneles de puertas) implementa una única interfaz IInteractable, así el dron necesita una sola acción de interacción para todos. Los sistemas se comunican con eventos de C#, como el puente, el último waypoint o el fin de un diálogo, en lugar de referencias directas."
         },
-        code: ""
+        code: "https://github.com/Jose-Elar/Into-the-Depths/blob/HEAD/Assets/Scripts/Interface_Interactable/IInteractable.cs"
       }
     ],
     links: {
@@ -91,28 +99,37 @@ window.PROJECTS = [
     description: {
       en: [
         "A vertical slice made by a team of two. The player manages a group of units, uses the terrain to their advantage and makes tactical decisions to defeat the rival team.",
-        "I was responsible for all the programming: the turn system, combat mechanics, unit movement and the rest of the core systems."
+        "I was responsible for all the programming: the turn system, combat mechanics, unit movement and the rest of the core systems. For the hex-grid pathfinding I adapted a tutorial and integrated it with my turn and state systems."
       ],
       es: [
         "Una vertical slice desarrollada por un equipo de dos personas. El jugador gestiona sus unidades, aprovecha el terreno y toma decisiones tácticas para derrotar al equipo rival.",
-        "Fui el responsable de toda la programación: el sistema de turnos, las mecánicas de combate, el movimiento de las unidades y el resto de sistemas principales."
+        "Fui el responsable de toda la programación: el sistema de turnos, las mecánicas de combate, el movimiento de las unidades y el resto de sistemas principales. Para la búsqueda de caminos en la cuadrícula hexagonal adapté un tutorial y lo integré con mis sistemas de turnos y estados."
       ]
     },
     systems: [
       {
         title: { en: "Turn system", es: "Sistema de turnos" },
-        text: { en: "Controls whose turn it is and what each unit can still do during that turn.", es: "Controla a quién le toca y qué puede hacer cada unidad durante su turno." },
-        code: ""
+        text: {
+          en: "The turn manager cycles through every unit on the board, gives control to the active one and puts the rest on hold. When a unit dies it is removed from the order, and the match ends as soon as one team has no units left.",
+          es: "El gestor de turnos recorre todas las unidades del tablero, da el control a la activa y deja al resto en espera. Cuando una unidad muere se elimina del orden, y la partida termina en cuanto un equipo se queda sin unidades."
+        },
+        code: "https://github.com/Jose-Elar/AdoptAFighter/blob/HEAD/AdoptAFighter/Assets/Scripts/MaquinaEstados/TurnManager.cs"
       },
       {
-        title: { en: "Grid movement", es: "Movimiento en el mapa" },
-        text: { en: "Works out where each unit can move and moves it there.", es: "Calcula a dónde puede moverse cada unidad y la desplaza." },
-        code: ""
+        title: { en: "Unit state machine", es: "Máquina de estados de las unidades" },
+        text: {
+          en: "Each unit runs its own state machine: play, move, attack, wait, take damage and dead. Every state is a separate component that gets switched on and off, and a light on the unit changes colour to show its current state.",
+          es: "Cada unidad tiene su propia máquina de estados: jugar, moverse, atacar, esperar, recibir daño y muerto. Cada estado es un componente independiente que se activa y desactiva, y una luz sobre la unidad cambia de color para mostrar su estado actual."
+        },
+        code: "https://github.com/Jose-Elar/AdoptAFighter/blob/HEAD/AdoptAFighter/Assets/Scripts/MaquinaEstados/MaquinaDeEstados.cs"
       },
       {
-        title: { en: "Combat", es: "Combate" },
-        text: { en: "Attacks, damage and defeat conditions between the two teams.", es: "Ataques, daño y condiciones de derrota entre los dos equipos." },
-        code: ""
+        title: { en: "Combat and stats", es: "Combate y estadísticas" },
+        text: {
+          en: "When an enemy unit comes within range, the attack option appears. Health and defence are ScriptableObjects, so each animal's stats are tuned in the editor, and incoming damage is scaled by the target's defence before its health bar updates.",
+          es: "Cuando una unidad enemiga entra en rango, aparece la opción de atacar. La vida y la defensa son ScriptableObjects, así que las estadísticas de cada animal se ajustan en el editor, y el daño recibido se escala según la defensa del objetivo antes de actualizar su barra de vida."
+        },
+        code: "https://github.com/Jose-Elar/AdoptAFighter/blob/HEAD/AdoptAFighter/Assets/Scripts/MaquinaEstados/HeathSystem.cs"
       }
     ],
     links: { code: "https://github.com/Jose-Elar/AdoptAFighter", play: "" }
@@ -125,7 +142,7 @@ window.PROJECTS = [
     engine: "Unity",
     language: "C#",
     team: { en: "Solo", es: "Individual" },
-    role: { en: "Research and programming", es: "Investigación y programación" },
+    role: { en: "All programming and AI design", es: "Toda la programación y el diseño de la IA" },
     image: "img/the-labyrinth.jpg",
     gallery: [],
     summary: {
@@ -134,32 +151,41 @@ window.PROJECTS = [
     },
     description: {
       en: [
-        "A research prototype to explore AI techniques that make NPC behaviour feel more dynamic, adapting decisions to several conditions of the environment at once.",
-        "Besides fuzzy logic, it includes custom pathfinding without NavMesh and an optimization that updates NPCs less often the further they are from the player."
+        "A project I programmed from scratch in Unity, developed as a research exercise into how fuzzy logic can make NPC behaviour feel more natural. NPCs patrol a maze and react to the player, deciding whether to chase or flee depending on how they read the situation. The map of rooms was built by a university classmate; all the code and AI are my own work.",
+        "Instead of jumping between fixed states, each NPC blends its behaviours with weights that change smoothly with its health and whether it can see the player. Navigation is written without Unity's NavMesh, and an on-screen HUD shows the nearest NPC's state and distance to make the AI easy to debug."
       ],
       es: [
-        "Un prototipo de investigación para explorar técnicas de IA que hagan que el comportamiento de los NPC resulte más dinámico, adaptando sus decisiones a varias condiciones del entorno a la vez.",
-        "Además de la lógica difusa, incluye búsqueda de caminos propia sin NavMesh y una optimización que actualiza los NPC con menos frecuencia cuanto más lejos están del jugador."
+        "Un proyecto que programé desde cero en Unity, desarrollado como un ejercicio de investigación sobre cómo la lógica difusa puede hacer que el comportamiento de los NPC resulte más natural. Los NPC patrullan un laberinto y reaccionan al jugador, decidiendo si perseguirlo o huir según cómo interpretan la situación. El mapa de salas lo construyó un compañero de universidad; todo el código y la IA son trabajo mío.",
+        "En lugar de saltar entre estados fijos, cada NPC mezcla sus comportamientos con pesos que cambian de forma suave según su vida y si puede ver al jugador. La navegación está escrita sin el NavMesh de Unity, y un HUD en pantalla muestra el estado y la distancia del NPC más cercano para depurar la IA con facilidad."
       ]
     },
     systems: [
       {
-        title: { en: "Fuzzy logic decisions", es: "Decisiones con lógica difusa" },
-        text: { en: "NPCs weigh several inputs at once instead of following strict if/else rules.", es: "Los NPC valoran varias entradas a la vez en lugar de seguir reglas estrictas de tipo if/else." },
-        code: ""
+        title: { en: "Fuzzy behaviour blending", es: "Mezcla difusa de comportamientos" },
+        text: {
+          en: "Wander, chase and flee all run at once, each with a weight. Low health while seeing the player raises the flee weight, high health raises chase, and wander takes over when the player is out of sight. Weights move smoothly, so NPCs change their minds gradually instead of snapping between states.",
+          es: "Deambular, perseguir y huir funcionan a la vez, cada uno con un peso. Poca vida viendo al jugador sube el peso de huir, mucha vida sube el de perseguir, y deambular toma el control cuando el jugador no está a la vista. Los pesos cambian de forma suave, así que los NPC cambian de idea poco a poco en lugar de saltar de un estado a otro."
+        },
+        code: "https://github.com/Jose-Elar/The-Labyrinth-Fuzzy-Logic-AI/blob/HEAD/Basic%20Unity%20IA%20Testing/Assets/Scripts/Behaviors/SteeringManager.cs"
       },
       {
-        title: { en: "Pathfinding without NavMesh", es: "Búsqueda de caminos sin NavMesh" },
-        text: { en: "Custom navigation through the maze, written from scratch.", es: "Navegación propia por el laberinto, escrita desde cero." },
-        code: ""
+        title: { en: "Obstacle avoidance without NavMesh", es: "Evitar obstáculos sin NavMesh" },
+        text: {
+          en: "NPCs feel their way through the maze with sphere-cast feelers to the front and sides. They push away from walls when stuck in a corner, slide along them instead of stopping, and hold a direction briefly to avoid jittering. Hit buffers are pre-allocated to avoid garbage collection.",
+          es: "Los NPC se orientan por el laberinto con sensores de sphere-cast hacia delante y a los lados. Se separan de las paredes cuando se atascan en una esquina, se deslizan por ellas en lugar de pararse y mantienen una dirección un instante para no temblar. Los buffers de impactos están reservados de antemano para evitar el recolector de basura."
+        },
+        code: "https://github.com/Jose-Elar/The-Labyrinth-Fuzzy-Logic-AI/blob/HEAD/Basic%20Unity%20IA%20Testing/Assets/Scripts/Optimizacion/AvoidTaggedObstaclesBehavior.cs"
       },
       {
-        title: { en: "Distance-based optimization", es: "Optimización por distancia" },
-        text: { en: "NPCs far from the player update less often to save processing time.", es: "Los NPC lejos del jugador se actualizan con menos frecuencia para ahorrar tiempo de proceso." },
-        code: ""
+        title: { en: "AI level of detail", es: "Nivel de detalle de la IA" },
+        text: {
+          en: "NPCs near the player recalculate their decisions every 0.1 seconds with every behaviour on. Distant ones only update every 0.3 seconds and switch off expensive behaviours like obstacle avoidance, saving processing time where the player can't notice.",
+          es: "Los NPC cerca del jugador recalculan sus decisiones cada 0,1 segundos con todos los comportamientos activos. Los lejanos solo se actualizan cada 0,3 segundos y desactivan comportamientos costosos como evitar obstáculos, ahorrando tiempo de proceso donde el jugador no lo nota."
+        },
+        code: "https://github.com/Jose-Elar/The-Labyrinth-Fuzzy-Logic-AI/blob/HEAD/Basic%20Unity%20IA%20Testing/Assets/Scripts/Optimizacion/AILODByDistance.cs"
       }
     ],
-    links: { code: "https://github.com/Jose-Elar/Basic-Unity-IA-Testing", play: "" }
+    links: { code: "https://github.com/Jose-Elar/The-Labyrinth-Fuzzy-Logic-AI", play: "" }
   },
 
   {
@@ -284,18 +310,49 @@ window.PROJECTS = [
     engine: "Unity",
     language: "C#",
     team: { en: "Solo", es: "Individual" },
-    role: { en: "All programming", es: "Toda la programación" },
+    role: { en: "Programming, following a course", es: "Programación, siguiendo un curso" },
     image: "img/space-shooter.jpg",
     gallery: [],
     summary: {
-      en: "Classic 2D shoot 'em up: survive waves of enemies with three lives and chase the highest score.",
-      es: "Shoot 'em up 2D clásico: sobrevive a oleadas de enemigos con tres vidas y consigue la máxima puntuación."
+      en: "Classic 2D shoot 'em up built following a Udemy course: survive waves of enemies with three lives and chase the highest score.",
+      es: "Shoot 'em up 2D clásico hecho siguiendo un curso de Udemy: sobrevive a oleadas de enemigos con tres vidas y consigue la máxima puntuación."
     },
     description: {
-      en: ["A learning project to strengthen my Unity 2D skills, recreating the classic mechanics of the genre: movement, shooting, enemy waves and scoring. Art assets come from a Udemy course."],
-      es: ["Un proyecto de aprendizaje para reforzar mis conocimientos de Unity 2D, recreando las mecánicas clásicas del género: movimiento, disparo, oleadas de enemigos y puntuación. Los recursos gráficos son de un curso de Udemy."]
+      en: [
+        "A learning project built by following a Udemy course on Unity 2D. The course provided the art and guided the structure of the code, and I wrote and integrated each system as I went: movement, shooting, enemies, power-ups, lives and the game loop.",
+        "It was my introduction to the classic shoot 'em up mechanics and to organising a small Unity game into managers and components, which I later applied in my own projects."
+      ],
+      es: [
+        "Un proyecto de aprendizaje hecho siguiendo un curso de Udemy sobre Unity 2D. El curso aportó el arte y guió la estructura del código, y yo fui escribiendo e integrando cada sistema: movimiento, disparo, enemigos, power-ups, vidas y el bucle de juego.",
+        "Fue mi introducción a las mecánicas clásicas de los shoot 'em up y a organizar un juego pequeño de Unity en gestores y componentes, algo que después apliqué en mis propios proyectos."
+      ]
     },
-    systems: [],
+    systems: [
+      {
+        title: { en: "Power-ups", es: "Power-ups" },
+        text: {
+          en: "Three timed power-ups: triple shot, speed boost and a shield that absorbs one hit. Each lasts five seconds and is switched off by a coroutine. They drift down the screen and bounce off the edges, so the player has to chase them.",
+          es: "Tres power-ups temporales: disparo triple, aumento de velocidad y un escudo que absorbe un golpe. Cada uno dura cinco segundos y se desactiva con una corrutina. Bajan por la pantalla rebotando en los bordes, así que el jugador tiene que ir a por ellos."
+        },
+        code: "https://github.com/Jose-Elar/Space-Shooter/blob/HEAD/Space%20Shooter/Assets/Scripts/PowerUp.cs"
+      },
+      {
+        title: { en: "Enemies and waves", es: "Enemigos y oleadas" },
+        text: {
+          en: "Enemies zig-zag down the screen, bouncing off the sides, and fire at random intervals so their attacks are hard to predict. The spawn manager starts the waves when the player destroys the first asteroid, keeps sending enemies and power-ups, and stops when the player dies.",
+          es: "Los enemigos bajan en zigzag rebotando en los lados y disparan a intervalos aleatorios para que sus ataques sean difíciles de predecir. El gestor de aparición empieza las oleadas cuando el jugador destruye el primer asteroide, sigue enviando enemigos y power-ups, y se detiene cuando el jugador muere."
+        },
+        code: "https://github.com/Jose-Elar/Space-Shooter/blob/HEAD/Space%20Shooter/Assets/Scripts/Enemies/Enemy.cs"
+      },
+      {
+        title: { en: "Player, lives and damage", es: "Jugador, vidas y daño" },
+        text: {
+          en: "The ship wraps around the sides of the screen and has a short fire cooldown. It has three lives: each hit sets another engine on fire as visual feedback, the HUD updates, and losing the last life stops the spawns and shows a flashing game over screen with restart.",
+          es: "La nave atraviesa los laterales de la pantalla y tiene un breve tiempo de recarga entre disparos. Tiene tres vidas: cada golpe incendia otro motor como respuesta visual, el HUD se actualiza, y al perder la última vida se detienen las apariciones y aparece una pantalla de fin de partida parpadeante con reinicio."
+        },
+        code: "https://github.com/Jose-Elar/Space-Shooter/blob/HEAD/Space%20Shooter/Assets/Scripts/Player.cs"
+      }
+    ],
     links: { code: "https://github.com/Jose-Elar/Space-Shooter", play: "" }
   },
 
@@ -307,7 +364,8 @@ window.PROJECTS = [
     language: "C++",
     team: { en: "Solo", es: "Individual" },
     role: { en: "All programming", es: "Toda la programación" },
-    image: "img/snake-cpp.png",
+    image: "img/snake-cpp.jpg",
+    video: "img/snake-cpp.mp4",
     gallery: [],
     summary: {
       en: "Snake written in plain C++ with raylib and CMake, no engine, to practise the fundamentals of programming a game.",
@@ -317,7 +375,24 @@ window.PROJECTS = [
       en: ["Without an engine, everything has to be written by hand: the game loop, the grid, the snake's body, food spawning and the game states. The code is split into small classes for the snake, the food and the game state."],
       es: ["Sin motor hay que escribirlo todo a mano: el bucle de juego, la cuadrícula, el cuerpo de la serpiente, la aparición de comida y los estados de la partida. El código está dividido en clases pequeñas para la serpiente, la comida y el estado del juego."]
     },
-    systems: [],
-    links: { code: "https://github.com/Jose-Elar/Snake-Game-C-", play: "" }
+    systems: [
+      {
+        title: { en: "Snake body as a deque", es: "El cuerpo de la serpiente como deque" },
+        text: {
+          en: "The body is a std::deque of grid positions. Each step pushes a new head and pops the tail, unless the snake has just eaten, so growing costs nothing extra. The same class blocks reversing into itself and checks wall and self collisions.",
+          es: "El cuerpo es un std::deque de posiciones de la cuadrícula. Cada paso añade una cabeza nueva y quita la cola, salvo si la serpiente acaba de comer, así que crecer no cuesta nada extra. La misma clase impide girar sobre sí misma y comprueba los choques con las paredes y con su propio cuerpo."
+        },
+        code: "https://github.com/Jose-Elar/Snake-Game-Cpp/blob/HEAD/classes/Snake.cpp"
+      },
+      {
+        title: { en: "Game loop and states", es: "Bucle de juego y estados" },
+        text: {
+          en: "A small state machine (start, playing, game over) drives the whole game. The snake moves on a fixed timer instead of every frame, so its speed is the same on any machine, and the game restarts without closing the window.",
+          es: "Una pequeña máquina de estados (inicio, jugando, fin de partida) controla todo el juego. La serpiente se mueve con un temporizador fijo en lugar de en cada frame, así que su velocidad es la misma en cualquier equipo, y la partida se reinicia sin cerrar la ventana."
+        },
+        code: "https://github.com/Jose-Elar/Snake-Game-Cpp/blob/HEAD/main.cpp"
+      }
+    ],
+    links: { code: "https://github.com/Jose-Elar/Snake-Game-Cpp", play: "" }
   }
 ];

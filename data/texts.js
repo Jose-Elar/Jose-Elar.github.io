@@ -46,14 +46,13 @@ window.TEXTS = {
       { group: "Speaks", items: ["Spanish (native)", "English C1 (Cambridge)"] }
     ],
 
-    contactTitle: "Let's talk",
-    contactBody: "I'm looking for my first role as a gameplay programmer, in Spain or remote. The fastest way to reach me is by email.",
+    contactTitle: "Get in touch",
+    contactBody: "I'm currently looking for a junior gameplay programmer position, in Spain, abroad or remote, and I'm available to start immediately.",
     contactEmail: "Email",
     contactLinkedin: "LinkedIn",
     contactGithub: "GitHub",
     contactCv: "CV (PDF)",
 
-    footer: "Built by hand with HTML, CSS and JavaScript. Hosted on GitHub Pages.",
 
     // Project page
     backToProjects: "Back to all projects",
@@ -99,7 +98,7 @@ window.TEXTS = {
     aboutTitle: "Sobre mí",
     aboutBody: [
       "Soy José Elguea, programador de La Rioja, graduado en Diseño y Desarrollo de Videojuegos por UNIR. En 2026 hice prácticas en DeuSens, desarrollando funcionalidades para una mesa interactiva en Godot dentro de un equipo de desarrollo.",
-      "Me centro en la programación de gameplay: los sistemas que deciden cómo se siente un juego al jugarlo. Mi formación en diseño me ayuda a entender lo que buscan diseñadores y artistas, por eso disfruto trabajando codo con codo con ellos: prototipar ideas rápido, iterar con su feedback y escribir código claro sobre el que todo el equipo pueda construir. En Adopt a Fighter, como único programador de un equipo de dos, convertir nuestras ideas en sistemas que funcionaran era cosa mía.",
+      "Me centro en la programación de gameplay: los sistemas que deciden cómo se siente un juego al jugarlo. Mi formación en diseño me ayuda a entender lo que buscan diseñadores y artistas, por eso disfruto trabajando codo con codo con ellos: prototipar ideas rápido, iterar con su feedback y escribir código claro sobre el que todo el equipo pueda construir. En Adopt a Fighter, como único programador de un equipo de dos, convertir nuestras ideas en sistemas que funcionaran era mi trabajo.",
       "Me interesan especialmente la IA para videojuegos y la realidad virtual y aumentada, y sigo formándome en Unity y Godot con proyectos personales."
     ],
     skillsTitle: "Con qué trabajo",
@@ -110,14 +109,13 @@ window.TEXTS = {
       { group: "Idiomas", items: ["Español (nativo)", "Inglés C1 (Cambridge)"] }
     ],
 
-    contactTitle: "Hablemos",
-    contactBody: "Busco mi primer puesto como programador de gameplay, en España o en remoto. La forma más rápida de contactarme es por email.",
+    contactTitle: "Contacto",
+    contactBody: "Actualmente busco un puesto como programador de gameplay junior, en España o en remoto, con disponibilidad inmediata.",
     contactEmail: "Email",
     contactLinkedin: "LinkedIn",
     contactGithub: "GitHub",
     contactCv: "CV (PDF)",
 
-    footer: "Hecho a mano con HTML, CSS y JavaScript. Alojado en GitHub Pages.",
 
     backToProjects: "Volver a todos los proyectos",
     factEngine: "Motor",
