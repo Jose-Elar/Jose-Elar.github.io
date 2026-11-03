@@ -35,15 +35,15 @@ window.TEXTS = {
     aboutTitle: "About me",
     aboutBody: [
       "I'm José Elguea, a programmer from La Rioja, Spain, with a degree in Video Game Design and Development from UNIR. In 2026 I did an internship at DeuSens, building features for an interactive table in Godot as part of a development team.",
-      "I focus on gameplay programming: the systems that decide how a game feels to play. My design background helps me understand what designers and artists are aiming for, so I enjoy working closely with them: prototyping ideas quickly, iterating on feedback and writing clear code the whole team can build on. On Adopt a Fighter, as the only programmer in a team of two, turning our ideas into working systems was my job.",
+      "I focus on gameplay programming: the systems that decide how a game feels to play. My design background helps me understand what designers and artists are aiming for, so I enjoy working closely with them: prototyping ideas quickly, iterating on feedback and writing clear code the whole team can build on. On Adopt a Fighter I was the only programmer in a team of two, so turning our ideas into working systems was my job.",
       "I'm especially interested in game AI and in virtual and augmented reality, and I keep learning Unity and Godot through personal projects."
     ],
     skillsTitle: "What I work with",
     skills: [
       { group: "Engines", items: ["Unity (2D, 3D)", "Godot (2D, 3D, VR)", "Unreal Engine (basics)"] },
       { group: "Languages", items: ["C#", "C++", "GDScript"] },
-      { group: "Also", items: ["Git and GitHub", "QA testing", "raylib", "CMake"] },
-      { group: "Speaks", items: ["Spanish (native)", "English C1 (Cambridge)"] }
+      { group: "Other", items: ["Git and GitHub", "QA testing", "raylib", "CMake"] },
+      { group: "Spoken", items: ["Spanish (native)", "English C1 (Cambridge)"] }
     ],
 
     contactTitle: "Get in touch",
@@ -97,15 +97,15 @@ window.TEXTS = {
 
     aboutTitle: "Sobre mí",
     aboutBody: [
-      "Soy José Elguea, programador de La Rioja, graduado en Diseño y Desarrollo de Videojuegos por UNIR. En 2026 hice prácticas en DeuSens, desarrollando funcionalidades para una mesa interactiva en Godot dentro de un equipo de desarrollo.",
-      "Me centro en la programación de gameplay: los sistemas que deciden cómo se siente un juego al jugarlo. Mi formación en diseño me ayuda a entender lo que buscan diseñadores y artistas, por eso disfruto trabajando codo con codo con ellos: prototipar ideas rápido, iterar con su feedback y escribir código claro sobre el que todo el equipo pueda construir. En Adopt a Fighter, como único programador de un equipo de dos, convertir nuestras ideas en sistemas que funcionaran era mi trabajo.",
+      "Soy José Elguea, programador de La Rioja, graduado en Diseño y Desarrollo de Videojuegos por la UNIR. En 2026 hice prácticas en DeuSens, desarrollando funcionalidades para una mesa interactiva en Godot dentro de un equipo de desarrollo.",
+      "Me centro en la programación de gameplay: los sistemas que definen qué sensaciones transmite un juego al jugarlo. Mi formación en diseño me ayuda a entender lo que buscan diseñadores y artistas, por eso disfruto trabajando codo con codo con ellos: prototipar ideas rápido, iterar con su feedback y escribir código claro sobre el que todo el equipo pueda construir. En Adopt a Fighter era el único programador de un equipo de dos, así que convertir nuestras ideas en sistemas que funcionaran era mi trabajo.",
       "Me interesan especialmente la IA para videojuegos y la realidad virtual y aumentada, y sigo formándome en Unity y Godot con proyectos personales."
     ],
     skillsTitle: "Con qué trabajo",
     skills: [
       { group: "Motores", items: ["Unity (2D, 3D)", "Godot (2D, 3D, VR)", "Unreal Engine (nociones)"] },
       { group: "Lenguajes", items: ["C#", "C++", "GDScript"] },
-      { group: "Además", items: ["Git y GitHub", "Control de calidad (QA)", "raylib", "CMake"] },
+      { group: "Otros", items: ["Git y GitHub", "Control de calidad (QA)", "raylib", "CMake"] },
       { group: "Idiomas", items: ["Español (nativo)", "Inglés C1 (Cambridge)"] }
     ],
 
@@ -121,7 +121,7 @@ window.TEXTS = {
     factEngine: "Motor",
     factLanguage: "Lenguaje",
     factTeam: "Equipo",
-    factRole: "Mi papel",
+    factRole: "Mi rol",
     systemsTitle: "Sistemas principales",
     codeLink: "Ver el código",
     codePending: "Enlace al código próximamente",
